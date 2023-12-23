@@ -12,9 +12,10 @@
     <a href="{{ path('admin.index') }}">Администрирование</a>
     {% for item in articles %}
         <article>
+            <a href="{{ path('app_article_edit', {'id': item.id}) }}">Редактировать</a>
             <h2>{{ item.title }}</h2>
             <div class="article-content">
-                {{ item.body }}
+                {{ item.body|raw|nl2br }}
             </div>
             <div>
                 Дата создания: {{ item.createdAt|date('d.m.Y H:i:s') }}
