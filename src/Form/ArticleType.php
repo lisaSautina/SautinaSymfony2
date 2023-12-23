@@ -16,7 +16,7 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
+            ->add('title', TextType::class, [
                 'label' => 'Название статьи',
                 'required' => true,
             ])

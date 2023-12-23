@@ -4,9 +4,11 @@ namespace App\Controller;
 
 
 use App\Service\ArticleServiceInterface;
+use http\Client\Curl\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HomeController extends AbstractController
 {
