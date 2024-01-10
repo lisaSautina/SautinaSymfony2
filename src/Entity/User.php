@@ -111,35 +111,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Article>
      */
-    public function getYes(): Collection
+    public function getArticles(): Collection
     {
-        return $this->yes;
+        return $this->articles;
     }
 
-    public function addYe(Article $ye): static
+    public function addArticle(Article $article): static
     {
-        if (!$this->yes->contains($ye)) {
-            $this->yes->add($ye);
-            $ye->setAuthor($this);
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->setAuthor($this);
         }
 
         return $this;
     }
 
-    public function removeYe(Article $ye): static
+    public function removeArticle(Article $article): static
     {
-        if ($this->yes->removeElement($ye)) {
+        if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($ye->getAuthor() === $this) {
-                $ye->setAuthor(null);
+            if ($article->getAuthor() === $this) {
+                $article->setAuthor(null);
             }
         }
 
         return $this;
     }
+
     public function __toString(): string
     {
         return (string) $this->getEmail();
     }
+    }
 
-}

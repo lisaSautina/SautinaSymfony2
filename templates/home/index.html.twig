@@ -11,9 +11,6 @@
 <div class="example-wrapper">
     <a href="{{ path('admin.index') }}">Администрирование</a>
     {% for item in articles %}
-        <p>
-
-        </p>
         <article>
             <h2>{{ item.title }}</h2>
             <a href="{{ path('app_article_edit', {'id': item.id}) }}">Редактировать</a>
@@ -24,7 +21,9 @@
                 Дата создания: {{ item.createdAt|date('d.m.Y H:i:s') }}, Автор: {{ item.author }}
             </div>
         </article>
+        <p>
 
+        </p>
     {% endfor %}
 </div>
 {% endblock %}

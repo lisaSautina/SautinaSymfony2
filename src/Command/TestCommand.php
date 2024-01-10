@@ -2,9 +2,6 @@
 
 namespace App\Command;
 
-use App\Entity\Article;
-use Doctrine\ORM\EntityManagerInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -19,10 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class TestCommand extends Command
 {
-    public function __construct(
-        private readonly LoggerInterface $logger,
-        private readonly EntityManagerInterface $entityManager,
-    )
+    public function __construct()
     {
         parent::__construct();
     }
@@ -40,18 +34,15 @@ class TestCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('arg1');
 
-        $article = $this->entityManager->getRepository(Article::class)->findOneBy([]);
+        if ($arg1) {
+            $io->note(sprintf('You passed an argument: %s', $arg1));
+        }
 
-        if ($article !== null) {
-            $article->setTitle(sprintf('Рандомное название статьи: %d', rand(1, 500)));
-
-            $this->entityManager->persist($article);
-            $this->entityManager->flush();
+        if ($input->getOption('option1')) {
+            // ...
         }
 
         $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
-
-        $this->logger->info('command has been executed');
 
         return Command::SUCCESS;
     }
