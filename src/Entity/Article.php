@@ -16,21 +16,23 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $title = null;
     #[Assert\Length(
-        min: 3,
-        max: 255,
+        min: 2,
+        max: 50,
     )]
+    private ?string $title = null;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $body = null;
     #[Assert\Length(
         min: 2,
         max: 1000,
     )]
+    private ?string $body = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'yes')]
+    #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
